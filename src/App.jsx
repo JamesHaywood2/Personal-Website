@@ -237,6 +237,7 @@ function AboutMe() {
   return (
     <div className="About-Me">
       <h1>About Me</h1>
+      <h1>WIP</h1>
     </div>
   )
 }
@@ -245,6 +246,11 @@ function ContactMe() {
   return (
     <div className="Contact-Me">
       <h1>Contact Me</h1>
+      <h1>WIP</h1>
+      <h1>Phone: (205)-873-9327</h1>
+      <h1>Email: Haywoodjames2@gmail.com</h1>
+      <h1>LinkedIn: <a href="https://www.linkedin.com/in/james-haywood-305763263/" target="_blank" rel="noopener noreferrer">View Profile</a></h1>
+      <h1>GitHub: <a href="https://github.com/JamesHaywood2" target="_blank" rel="noopener noreferrer">View Profile</a></h1>
     </div>
   )
 }
@@ -253,6 +259,8 @@ function Projects() {
   return (
     <div className="Projects">
       <h1>Projects</h1>
+      <h1>WIP</h1>
+      <h1>GitHub: <a href="https://github.com/JamesHaywood2?tab=repositories" target="_blank" rel="noopener noreferrer">View Github Repository</a></h1>
     </div>
   )
 }
