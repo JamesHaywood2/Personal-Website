@@ -1,3 +1,7 @@
+/* ============================================================ */
+/* ROOT & LAYOUT */
+/* ============================================================ */
+
 html {
   font-size: 20px;
 }
@@ -32,10 +36,13 @@ html {
   width: 100%;
   padding: 20px;
   z-index: 1;
-
 }
 
-/* .Header is a div at the very top of the page with 0 padding. It goes across the entire width of the page. It contains the name-section and the nav-section. */
+/* ============================================================ */
+/* HEADER & NAVIGATION */
+/* ============================================================ */
+
+/* .Header is a div at the very top of the page. It contains the name-section and the nav-section. */
 .Header {
   position: absolute;
   top: 0;
@@ -48,17 +55,28 @@ html {
   z-index: 1;
 }
 
-/* Name-section should be in the top left corner of the screen with very little padding. */
+/* Name-section in the top left corner. */
 .name-section {
   position: absolute;
-  font-size: 2.5rem;
-  top: 0px;
-  left: 0px;
+  font-size: clamp(1.2rem, 5vw, 2.8rem);
+  top: 0;
+  left: 0;
 }
 
 .name-section h1 {
   margin: 0;
   padding: 0;
+}
+
+.Clock {
+  font-size: clamp(1.2rem, 6vw, 3.2rem);
+  color: white;
+  font-family: 'Courier New', monospace;
+}
+
+.time-display {
+  font-size: clamp(1.2rem, 6vw, 3.2rem);
+  letter-spacing: 0.1em;
 }
 
 .nav-section {
@@ -69,61 +87,79 @@ html {
   gap: 20px;
 }
 
-/*Main content is a div that basically takes up the entire page minus the header. It is centered both vertically and horizontally. It has a white border with a 10px padding. The border should be 2px thick and have a radius of 5px. */
+/* ============================================================ */
+/* MAIN SECTIONS */
+/* ============================================================ */
+
+/* Main content area. */
 .main-content {
   position: absolute;
   height: 85%;
   top: 10%;
-  left: .5%;
-  right: .5%;
-  /* box-sizing: border-box; */
-  /* border: 7px solid white; */
+  left: 0.5%;
+  right: 0.5%;
   padding: 10px;
   border-radius: 25px;
-  /* background-color: rgba(255, 255, 255, 0.1); */
 }
 
-/*Nav-menu is a div that is inside the main-content. It is basically a vertical list of links that open up different sections of the page.
-It is on the left side of the main-content and takes up about 20% of the width. It has a white border with a 10px padding. The border should be 2px thick and have a radius of 5px. */
+/* Navigation menu (left side). */
 .Nav-Menu {
   position: absolute;
   top: 10%;
   left: 5%;
   width: 20%;
   height: 80%;
+  border-radius: 25px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-menu-content {
   border: 5px solid white;
   padding: 10px;
   border-radius: 25px;
   background-color: rgba(255, 255, 255, 0.1);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
 .Nav-Menu h1 {
-  font-size: 3rem;
-  margin-top: 0px;
+  font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+  margin-top: 0;
+  margin-bottom: clamp(10px, 2vh, 15px);
 }
 
-.Nav-Menu button {
+.Nav-Menu button:not(.close-btn) {
   display: block;
-  width: auto;
-  padding: 15px 10px;
-  margin: 25px auto;
+  width: 95%;
+  padding: clamp(8px, 1.5vh, 12px);
+  margin: clamp(12px, 1.5vh, 18px) auto;
   background: none;
   border: none;
   color: white;
-  font-size: 3.5rem;
+  font-size: clamp(1.3rem, 3.8vw, 2.2rem);
   cursor: pointer;
   transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
-.Nav-Menu button:hover {
+.Nav-Menu button:not(.close-btn):hover {
   transform: scale(1.15);
 }
 
-.Nav-Menu button:active {
+.Nav-Menu button:not(.close-btn):active {
   transform: scale(0.95);
 }
 
-/* Info-section is a div that is inside main-content. It is on the right side of the main-content and also has a white border much like the nav-menu. */
+.Nav-Menu .close-btn {
+  z-index: 30;
+}
+
+/* Info section (right side). */
 .Info-Section {
   position: absolute;
   top: 10%;
@@ -134,7 +170,21 @@ It is on the left side of the main-content and takes up about 20% of the width. 
   padding: 10px;
   border-radius: 25px;
   background-color: rgba(255, 255, 255, 0.1);
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: none;
 }
+
+.Info-Section::-webkit-scrollbar {
+  display: none;
+}
+
+/* ============================================================ */
+/* BUTTONS */
+/* ============================================================ */
 
 .close-btn {
   position: absolute;
@@ -143,11 +193,11 @@ It is on the left side of the main-content and takes up about 20% of the width. 
   background: none;
   border: none;
   color: white;
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   cursor: pointer;
   padding: 0;
-  width: 60px;
-  height: 60px;
+  width: 45px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -156,6 +206,26 @@ It is on the left side of the main-content and takes up about 20% of the width. 
 
 .close-btn:hover {
   transform: scale(1.2);
+}
+
+/* Content sections. */
+.Contact-Me,
+.Projects {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.Contact-Me h1,
+.Projects h1 {
+  font-size: clamp(1rem, 3vw, 2rem);
+  margin: 0;
+  word-wrap: break-word;
 }
 
 .nav-close-btn {
@@ -177,7 +247,6 @@ It is on the left side of the main-content and takes up about 20% of the width. 
   z-index: 15;
 }
 
-
 .nav-close-btn:hover {
   transform: scale(1.2);
 }
@@ -187,11 +256,11 @@ It is on the left side of the main-content and takes up about 20% of the width. 
   top: 25px;
   left: 25px;
   background: rgba(255, 255, 255, 0.1);
-  border: 5px solid white;
+  border: clamp(3px, 0.5vw, 6px) solid white;
   color: white;
-  font-size: 4rem;
-  width: 120px;
-  height: 120px;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  width: clamp(80px, 18vw, 160px);
+  height: clamp(80px, 18vw, 160px);
   cursor: pointer;
   border-radius: 32px;
   display: flex;
@@ -212,7 +281,7 @@ It is on the left side of the main-content and takes up about 20% of the width. 
   transform: scale(0.95);
 }
 
-/* Portrait Mode - Stack elements and toggle visibility */
+/* Portrait mode adjustments */
 @media (orientation: portrait) {
   .content {
     padding: 0;
@@ -225,9 +294,17 @@ It is on the left side of the main-content and takes up about 20% of the width. 
 
   .name-section {
     position: relative;
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 6vw, 2.5rem);
     top: auto;
     left: auto;
+  }
+
+  .Clock {
+    font-size: clamp(1.3rem, 7vw, 2.8rem);
+  }
+
+  .time-display {
+    font-size: clamp(1.3rem, 7vw, 2.8rem);
   }
 
   .nav-section {
@@ -244,17 +321,17 @@ It is on the left side of the main-content and takes up about 20% of the width. 
   .nav-close-btn {
     top: 5px;
     right: 5px;
-    font-size: 2rem;
-    width: 45px;
-    height: 45px;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    width: clamp(40px, 10vw, 70px);
+    height: clamp(40px, 10vw, 70px);
   }
 
   .nav-menu-btn {
     top: 12px;
     left: 12px;
-    width: 80px;
-    height: 80px;
-    font-size: 4rem;
+    width: clamp(70px, 16vw, 130px);
+    height: clamp(70px, 16vw, 130px);
+    font-size: clamp(2rem, 5vw, 4rem);
   }
 
   .Nav-Menu {
@@ -262,18 +339,20 @@ It is on the left side of the main-content and takes up about 20% of the width. 
     top: 10%;
     left: .5%;
     right: .5%;
-    width: 96%;
+    width: auto;
     height: 80%;
+    box-sizing: border-box;
   }
 
   .Nav-Menu h1 {
-    font-size: 4rem;
+    font-size: clamp(2.2rem, 8vw, 4rem);
+    margin-bottom: clamp(10px, 1.5vh, 15px);
   }
 
-  .Nav-Menu button {
-    font-size: 3.5rem;
-    padding: 10px;
-    margin: 20px auto;
+  .Nav-Menu button:not(.close-btn) {
+    font-size: clamp(1.8rem, 6vw, 3.2rem);
+    padding: clamp(8px, 1vh, 12px);
+    margin: clamp(10px, 1.2vh, 15px) auto;
   }
 
   .Info-Section {
@@ -281,8 +360,35 @@ It is on the left side of the main-content and takes up about 20% of the width. 
     top: 10%;
     left: 1%;
     right: 1%;
-    width: 98%;
+    width: auto;
     height: 80%;
+    box-sizing: border-box;
+  }
+
+  .Contact-Me h1,
+  .Projects h1 {
+    font-size: clamp(1.8rem, 6vw, 3.5rem);
+  }
+
+  .About-Me h1 {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+  }
+
+  .about-images {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: clamp(15px, 3vw, 30px);
+    align-items: center;
+    justify-content: center;
+  }
+
+  .profile-photo {
+    width: clamp(225px, 45vw, 500px) !important;
+    height: clamp(225px, 45vw, 500px) !important;
+  }
+
+  .uah-logo {
+    width: clamp(280px, 60vw, 680px) !important;
   }
 
   .main-content {
@@ -291,7 +397,193 @@ It is on the left side of the main-content and takes up about 20% of the width. 
   }
 }
 
+/* ============================================================ */
+/* SOCIAL LINKS */
+/* ============================================================ */
 
+.social-links {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
 
+.social-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(60px, 14vw, 100px);
+  height: clamp(60px, 14vw, 100px);
+  border-radius: 50%;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  border: clamp(2px, 0.4vw, 4px) solid rgba(255, 255, 255, 0.3);
+}
 
+.social-button svg {
+  width: clamp(30px, 8vw, 50px);
+  height: clamp(30px, 8vw, 50px);
+}
 
+.social-button:hover {
+  transform: translateY(-5px) scale(1.1);
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.social-button.github:hover {
+  color: #ffffff;
+}
+
+.social-button.linkedin:hover {
+  color: #0a66c2;
+  background: rgba(10, 102, 194, 0.1);
+  border-color: #0a66c2;
+}
+
+.social-button.email:hover {
+  color: #ea4335;
+  background: rgba(234, 67, 53, 0.1);
+  border-color: #ea4335;
+}
+
+/* ============================================================ */
+/* ABOUT ME SECTION */
+/* ============================================================ */
+
+.About-Me {
+  width: 100%;
+  height: 100%;
+  padding: clamp(10px, 5%, 20px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 3%, 20px);
+  overflow-x: hidden;
+}
+
+.About-Me h1 {
+  font-size: clamp(1.8rem, 8vw, 3.5rem);
+  margin: 0;
+  text-align: center;
+}
+
+.about-images-container {
+  display: flex;
+  gap: clamp(20px, 5vw, 80px);
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: clamp(10px, 3vw, 30px);
+  min-width: 0;
+}
+
+.about-images {
+  display: flex;
+  gap: clamp(20px, 5vw, 80px);
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.profile-photo {
+  width: clamp(150px, 25vw, 320px);
+  height: clamp(150px, 25vw, 320px);
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 15px;
+  border: 3px solid white;
+  object-fit: cover;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.uah-logo {
+  width: clamp(200px, 40vw, 600px);
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.about-bio-section {
+  padding: clamp(10px, 3%, 20px);
+  border-radius: 15px;
+  max-width: 95%;
+  width: 100%;
+  margin: 0 auto;
+  align-self: center;
+  box-sizing: border-box;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(15px, 3%, 20px);
+  scrollbar-width: none;
+}
+
+.about-bio-section::-webkit-scrollbar {
+  display: none;
+}
+
+.about-bio-section .about-images {
+  order: -1;
+}
+
+.about-bio-section p {
+  /* ===== ADJUST BIO TEXT SIZE HERE ===== */
+  /* Current: clamp(1.2rem, 3.5vw, 1.8rem) */
+  /* Decrease the 3.5vw value to make text smaller (e.g., 2.5vw) */
+  /* Decrease the max value (1.8rem) to reduce max size (e.g., 1.5rem) */
+  font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+  /* ===== END BIO TEXT SIZE ===== */
+  line-height: 1.8;
+  color: white;
+  margin: 0 0 clamp(10px, 2%, 20px) 0;
+}
+
+.about-bio-section p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================================ */
+/* PORTRAIT MODE ADJUSTMENTS */
+/* ============================================================ */
+
+@media (orientation: portrait) {
+  .About-Me h1 {
+    font-size: 4.2rem;
+  }
+
+  .about-images {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .profile-photo {
+    width: 190px;
+    height: 190px;
+  }
+
+  .uah-logo {
+    width: 190px;
+  }
+
+  .about-bio-section {
+    padding: 15px;
+    scrollbar-width: none;
+  }
+
+  .about-bio-section::-webkit-scrollbar {
+    display: none;
+  }
+
+  .about-bio-section p {
+    /* ===== ADJUST PORTRAIT BIO TEXT SIZE HERE ===== */
+    /* Current: 1rem */
+    /* Increase or decrease this value to adjust text size in portrait mode */
+    font-size: clamp(1.2rem, 3.0vw, 4rem);
+    /* ===== END PORTRAIT BIO TEXT SIZE ===== */
+  }
+}
